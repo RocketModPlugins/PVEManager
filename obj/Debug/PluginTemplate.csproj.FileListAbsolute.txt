@@ -1,0 +1,3 @@
+C:\Users\Trevor\Desktop\Codies\Unturned\Unturned Plugins\Plugin Template\obj\Debug\PluginTemplate.csprojResolveAssemblyReference.cache
+C:\Users\Trevor\Desktop\Codies\Unturned\Unturned Plugins\Plugin Template\bin\Release\SomeSimpleName.dll
+C:\Users\Trevor\Desktop\Codies\Unturned\Unturned Plugins\Plugin Template\obj\Debug\SomeSimpleName.dll

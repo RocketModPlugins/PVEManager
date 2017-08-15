@@ -1,0 +1,2 @@
+C:\Users\Trevor\Desktop\Unturned Plugins\MessageAnnouncer-master\bin\Release\TextCommands.dll
+C:\Users\Trevor\Desktop\Unturned Plugins\MessageAnnouncer-master\obj\Release\TextCommands.dll
