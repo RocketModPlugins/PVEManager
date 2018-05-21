@@ -1,93 +1,54 @@
-﻿using Rocket.API;
-using Rocket.Core.Logging;
-using Rocket.Unturned.Chat;
+﻿using System;
+using Rocket.API.Commands;
+using Rocket.API.Plugins;
+using Rocket.Core.I18N;
 using Rocket.Unturned.Player;
-using System;
-using System.Collections.Generic;
 
-namespace PVEManager
+namespace PVEManager.Commands
 {
-    public class PVP : IRocketCommand
+    public class PVP : ICommand
     {
-        public static Main Instance;
+        private readonly PvePluginMain _parentPlugin;
 
-        public List<string> Aliases
+        public PVP(IPlugin plugin)
         {
-            get
-            {
-                return new List<string>() { };
-            }
+            _parentPlugin = (PvePluginMain) plugin;
         }
 
-        public AllowedCaller AllowedCaller
+        public bool SupportsUser(Type user)
         {
-            get
-            {
-                return AllowedCaller.Player;
-            }
+            return typeof(UnturnedUser).IsAssignableFrom(user);
         }
 
-        public string Help
-        {
-            get
-            {
-                return "";
-            }
-        }
+        public string Name => "gpvp";
+        public string[] Aliases => null;
+        public string Summary => "Enables PVP Mode.";
+        public string Description => null;
+        public string Permission => null;
+        public string Syntax => "";
+        public IChildCommand[] ChildCommands => null;
 
-        public string Name
+        public void Execute(ICommandContext context)
         {
-            get
-            {
-                return "gpvp";
-            }
-        }
-
-        public List<string> Permissions
-        {
-            get
-            {
-                return new List<string>() { "pvemanager.pve" };
-            }
-        }
-
-        public string Syntax
-        {
-            get
-            {
-                return "";
-            }
-        }
-
-        public void Execute(IRocketPlayer caller, string[] command)
-        {
-            UnturnedPlayer player = (UnturnedPlayer)caller;
+            UnturnedPlayer player = ((UnturnedUser)context.User).UnturnedPlayer;
 
             string pvp = "PVP";
 
-            if (!Main.Instance.Configuration.Instance.PVE_Players.Contains(player.Id))
+            if (!_parentPlugin.IsPVE(player))
             {
-                UnturnedChat.Say(caller, Main.Instance.Translate("command_already", pvp));
+                context.User.SendLocalizedMessage(_parentPlugin.Translations, "command_already", pvp);
                 return;
             }
 
-            player.GodMode = false;
-            player.VanishMode = false;
+            _parentPlugin.SetPVE(player, false);
 
-            Main.Instance.Configuration.Instance.PVE_Players.Remove(player.Id);
-
-            Main.Instance.Configuration.Save();
-
-            
-
-            if (Main.Instance.Configuration.Instance.AnnounceWhenPVE == true)
+            if (_parentPlugin.ConfigurationInstance.AnnounceWhenPVE)
             {
-                UnturnedChat.Say(Main.Instance.Translate("command_public", pvp, player.CharacterName));
+                context.User.UserManager.BroadcastLocalized(_parentPlugin.Translations, "command_public", pvp, player.CharacterName);
+                return;
             }
-            else
-            {
-                UnturnedChat.Say(caller, Main.Instance.Translate("command_self", pvp));
-            }
+
+            context.User.SendLocalizedMessage(_parentPlugin.Translations, "command_self", pvp);
         }
     }
 }
