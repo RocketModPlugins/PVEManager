@@ -30,7 +30,7 @@ namespace PVEManager.Commands
 
         public void Execute(ICommandContext context)
         {
-            UnturnedPlayer player = ((UnturnedUser)context.User).UnturnedPlayer;
+            UnturnedPlayer player = ((UnturnedUser)context.User).Player;
 
             string pve = "PVE";
 

@@ -1,2 +1,0 @@
-C:\Users\Trevor\Desktop\Codies\Unturned\Unturned Plugins\PVEManager\bin\Release\PVEManager.dll
-C:\Users\Trevor\Desktop\Codies\Unturned\Unturned Plugins\PVEManager\obj\Debug\PVEManager.dll

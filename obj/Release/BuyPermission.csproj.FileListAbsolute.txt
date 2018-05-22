@@ -1,2 +1,0 @@
-C:\Users\Trevor\Desktop\Other Stuff\Unturned Plugins\BuyPermission\bin\Release\BuyPermission.dll
-C:\Users\Trevor\Desktop\Other Stuff\Unturned Plugins\BuyPermission\obj\Release\BuyPermission.dll

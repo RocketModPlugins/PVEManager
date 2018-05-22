@@ -51,11 +51,11 @@ namespace PVEManager
 
                     if (IsPVE(player))
                     {
-                        if (uPlayer.Player.equipment.useable is UseableGun
-                            || uPlayer.Player.equipment.useable is UseableMelee
-                            || uPlayer.Player.equipment.useable is UseableThrowable)
+                        if (uPlayer.NativePlayer.equipment.useable is UseableGun
+                            || uPlayer.NativePlayer.equipment.useable is UseableMelee
+                            || uPlayer.NativePlayer.equipment.useable is UseableThrowable)
                         {
-                            uPlayer.Player.equipment.dequip();
+                            uPlayer.NativePlayer.equipment.dequip();
                         }
                     }
                 }
