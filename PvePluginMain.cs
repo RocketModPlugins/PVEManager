@@ -21,16 +21,6 @@ namespace PVEManager
             eventManager.AddEventListener(this, this);
         }
 
-        protected override void OnLoad(bool isFromReload)
-        {
-            Logger.LogWarning("Successfully Loaded PVEManager!");
-        }
-
-        protected override void OnUnload()
-        {
-            Logger.LogInformation("Unload");
-        }
-
         public void FixedUpdate()
         {
             if (ConfigurationInstance.NoEquipWeaponsWhilePVE)
